@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SVG Magic</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath stroke='none' d='M0 0h24v24H0z' fill='none'/%3E%3Cpath d='M15 8h.01'/%3E%3Cpath d='M12 21h-6a3 3 0 0 1 -3 -3v-12a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v6'/%3E%3Cpath d='M3 16l5 -5c.928 -.893 2.072 -.893 3 0l3.993 3.993'/%3E%3Cpath d='M14 14l1 -1c.47 -.452 .995 -.675 1.52 -.67'/%3E%3Cpath d='M19 22.5a4.75 4.75 0 0 1 3.5 -3.5a4.75 4.75 0 0 1 -3.5 -3.5a4.75 4.75 0 0 1 -3.5 3.5a4.75 4.75 0 0 1 3.5 3.5'/%3E%3C/svg%3E" />
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/classic.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons/css/flag-icons.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr"></script>
+</head>
+<body>
+  <!-- 🌐 Selector de idioma desplegable -->
+  <header class="language-header">
+    <div class="dropdown">
+      <button class="dropdown-toggle" id="activeLanguage">
+        <span class="fi fi-co"></span> Español
+      </button>
+      <ul class="dropdown-menu">
+        <li onclick="setLanguage('es')"><span class="fi fi-co"></span> Español</li>
+        <li onclick="setLanguage('en')"><span class="fi fi-us"></span> English</li>
+        <li onclick="setLanguage('pt')"><span class="fi fi-br"></span> Português</li>
+      </ul>
+    </div>
+  </header>
+
+  <div class="container">
+    <h1 id="title">SVG Magic for Power Apps</h1>
+    <p id="subtitle">From SVG to fully usable Power FX and YAML — no hassle.</p>
+
+    <!-- Enlace a la guía -->
+    <p class="doc-link">
+      <a id="guideLink" href="https://learn.microsoft.com/en-us/power-apps/maker/canvas-apps/show-web-pages" target="_blank">
+        Guía: Cómo usar esta herramienta paso a paso
+      </a>
+    </p>
+
+    <div class="input-wrapper">
+      <input id="svgInput" class="input-dark" placeholder="Pega tu SVG aquí" />
+      <label class="upload-btn" for="fileUpload" id="uploadLabel">Subir archivo</label>
+      <input type="file" id="fileUpload" accept=".svg" hidden />
+    </div>
+
+    <h2 id="previewLabel">Vista previa</h2>
+    <div class="preview-box" id="preview"></div>
+
+    <div id="colorControls" class="color-control" style="display:none">
+      <div class="color-label">
+        <div id="colorPickerContainer"></div>
+        <span id="colorCode">Haz clic para elegir un color</span>
+      </div>
+    </div>
+
+    <div class="button-row">
+      <button class="btn-primary" id="copyBtn" onclick="copyPowerFX()">COPIAR CÓDIGO POWER FX</button>
+      <button class="btn-primary" id="copyYamlBtn" onclick="copyYAML()">COPIAR BLOQUE YAML</button>
+    </div>
+    
+  </div>
+
+  <!-- Manual para principiantes -->
+  <p class="guide-link">
+    <span id="manualText">¿Nuevo usando SVG en Power Apps?</span>
+    <a id="manualLink" href="https://www.hakoit.com/en/svg-power-apps-tool-use-svg-in-power-apps/" target="_blank">
+      Lee este manual práctico
+    </a>
+  </p>
+
+  <!-- Footer personalizado -->
+  <footer class="main-footer">
+    <p id="footerText">Desarrollado con ❤️ para la comunidad de Power Platform</p>
+    <div class="social-links">
+      <a href="https://github.com/sirbate" target="_blank" aria-label="GitHub">
+        <svg height="24" width="24" fill="#c9d1d9" viewBox="0 0 16 16">
+          <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 
+          2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 
+          0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52
+          -.01-.53.63-.01 1.08.58 1.23.82.72 1.21 
+          1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78
+          -.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82
+          -2.15-.08-.2-.36-1.02.08-2.12 0 0 .67
+          -.21 2.2.82a7.62 7.62 0 0 1 2-.27c.68 0 
+          1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 
+          1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 
+          0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 
+          1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 
+          8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
+        </svg>
+      </a>
+      <a href="https://linkedin.com/in/andresvelasquezb" target="_blank" aria-label="LinkedIn">
+        <svg height="24" width="24" fill="#c9d1d9" viewBox="0 0 24 24">
+          <path d="M4.98 3.5C4.98 4.88 3.87 
+          6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 
+          1 4.98 2.12 4.98 3.5zM.5 8.5h4V24h-4V8.5zm7.5 
+          0h3.8v2.1h.1c.53-1 1.83-2.1 3.77-2.1 4.03 0 
+          4.77 2.65 4.77 6.1V24h-4v-8.1c0-1.93-.03-4.42
+          -2.7-4.42-2.7 0-3.1 2.1-3.1 4.28V24h-4V8.5z" />
+        </svg>
+      </a>
+      <a href="https://andresvelasquez.dev" target="_blank" aria-label="Portafolio Web">
+        <svg height="24" width="24" fill="#c9d1d9" viewBox="0 0 24 24">
+          <path d="M10 2h4a2 2 0 0 1 2 2v2h4a2 2 0 0 1 2 2v3H2V8a2 2 0 0 1 2-2h4V4a2 2 0 0 1 2-2zm4 4V4h-4v2h4zM2 11h20v7a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-7z"/>
+        </svg>
+      </a>
+      
+      
+      
+      
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
+
+

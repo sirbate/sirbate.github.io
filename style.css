@@ -1,0 +1,273 @@
+/* 🌍 Selector de idioma desplegable */
+.language-header {
+  display: flex;
+  justify-content: flex-end;
+  padding: 1rem 2rem 0;
+  position: relative;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown-toggle {
+  background: none;
+  border: none;
+  color: #c9d1d9;
+  cursor: pointer;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: bold;
+}
+
+.dropdown-toggle .fi {
+  width: 32px;
+  height: 24px;
+  border-radius: 3px;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 120%;
+  right: 0;
+  background-color: #21262d;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  list-style: none;
+  padding: 8px 0;
+  margin: 0;
+  display: none;
+  z-index: 1000;
+  min-width: 160px;
+}
+
+.dropdown-menu li {
+  padding: 8px 16px;
+  color: #c9d1d9;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.dropdown-menu li:hover {
+  background-color: #30363d;
+}
+
+.dropdown-menu li .fi {
+  width: 32px;
+  height: 24px;
+  border-radius: 3px;
+}
+
+.dropdown.open .dropdown-menu {
+  display: block;
+}
+
+/* 🌙 Estilos generales modo oscuro */
+body {
+  background-color: #0d1117;
+  color: #c9d1d9;
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: #161b22;
+  border-radius: 10px;
+}
+
+h1 {
+  color: #58a6ff;
+  margin-bottom: 0.5rem;
+}
+
+p {
+  color: #8b949e;
+  margin-bottom: 2rem;
+}
+
+/* 🔤 Inputs y botones */
+.input-wrapper {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 1.5rem;
+}
+
+.input-dark {
+  flex: 1;
+  padding: 10px;
+  background-color: #21262d;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  color: #c9d1d9;
+}
+
+.upload-btn {
+  padding: 10px 16px;
+  background-color: #30363d;
+  border-radius: 6px;
+  color: #c9d1d9;
+  cursor: pointer;
+}
+
+.upload-btn:hover {
+  background-color: #39414a;
+}
+
+/* 📦 Vista previa SVG */
+.preview-box {
+  background-color: #0d1117;
+  border: 1px solid #30363d;
+  border-radius: 10px;
+  padding: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 250px;
+  margin-bottom: 1rem;
+}
+
+.preview-box svg {
+  width: 120px;
+  height: auto;
+}
+
+/* 🎨 Color picker */
+.color-control {
+  margin-bottom: 2rem;
+}
+
+.color-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#colorPickerContainer {
+  width: 36px;
+  height: 36px;
+  border-radius: 4px;
+  border: 2px solid #333;
+  box-shadow: inset 0 0 0 1px #000;
+  cursor: pointer;
+}
+
+#colorCode {
+  font-size: 0.95rem;
+  color: #C9D1D9;
+}
+
+/* 🧷 Botón principal */
+.button-row {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.btn-primary {
+  padding: 10px 20px;
+  background-color: #1d5fc9;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn-primary:hover {
+  background-color: #1673d2;
+}
+
+/* 🦶 Footer */
+.main-footer {
+  border-top: 1px solid #30363D;
+  margin-top: 4rem;
+  padding: 2rem 1rem 1rem;
+  text-align: center;
+  font-size: 0.95rem;
+  color: #8b949e;
+}
+
+.main-footer p {
+  margin-bottom: 1rem;
+}
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.social-links a {
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.social-links a:hover {
+  transform: scale(1.1);
+  opacity: 0.8;
+}
+
+/* 📘 Enlaces de ayuda y documentación */
+.doc-link {
+  margin-top: -1rem;
+  margin-bottom: 2rem;
+}
+
+.doc-link a,
+.guide-link a {
+  color: #7dbdf7;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.doc-link a:hover,
+.guide-link a:hover {
+  text-decoration: underline;
+}
+
+.guide-link {
+  text-align: center;
+  font-size: 0.95rem;
+  color: #8b949e;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+
+
+/* Scrollbar para navegadores basados en WebKit (Chrome, Edge, Safari) */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1e1e1e; /* Fondo de la pista */
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #444;  /* Color del "pulgón" */
+  border-radius: 10px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #666;
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #444 #1e1e1e;
+}
