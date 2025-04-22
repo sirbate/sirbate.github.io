@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
   <title>SVG Magic</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath stroke='none' d='M0 0h24v24H0z' fill='none'/%3E%3Cpath d='M15 8h.01'/%3E%3Cpath d='M12 21h-6a3 3 0 0 1 -3 -3v-12a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v6'/%3E%3Cpath d='M3 16l5 -5c.928 -.893 2.072 -.893 3 0l3.993 3.993'/%3E%3Cpath d='M14 14l1 -1c.47 -.452 .995 -.675 1.52 -.67'/%3E%3Cpath d='M19 22.5a4.75 4.75 0 0 1 3.5 -3.5a4.75 4.75 0 0 1 -3.5 -3.5a4.75 4.75 0 0 1 -3.5 3.5a4.75 4.75 0 0 1 3.5 3.5'/%3E%3C/svg%3E" />
 
@@ -12,27 +12,44 @@
   <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr"></script>
 </head>
 <body>
-  <!-- 🌐 Selector de idioma desplegable -->
-  <header class="language-header">
-    <div class="dropdown">
-      <button class="dropdown-toggle" id="activeLanguage">
-        <span class="fi fi-co"></span> Español
-      </button>
-      <ul class="dropdown-menu">
-        <li onclick="setLanguage('es')"><span class="fi fi-co"></span> Español</li>
-        <li onclick="setLanguage('en')"><span class="fi fi-us"></span> English</li>
-        <li onclick="setLanguage('pt')"><span class="fi fi-br"></span> Português</li>
-      </ul>
+  <!-- Header principal con navegación -->
+  <header class="main-header">
+    <div class="header-container">
+      <div class="logo-container">
+        <div class="logo">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+            <path d="M15 8h.01"/>
+            <path d="M12 21h-6a3 3 0 0 1 -3 -3v-12a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v6"/>
+            <path d="M3 16l5 -5c.928 -.893 2.072 -.893 3 0l3.993 3.993"/>
+            <path d="M14 14l1 -1c.47 -.452 .995 -.675 1.52 -.67"/>
+            <path d="M19 22.5a4.75 4.75 0 0 1 3.5 -3.5a4.75 4.75 0 0 1 -3.5 -3.5a4.75 4.75 0 0 1 -3.5 3.5a4.75 4.75 0 0 1 3.5 3.5"/>
+          </svg>
+        </div>
+        <h1 class="logo-title" id="title">SVG Magic para Power Apps</h1>
+      </div>
+      
+      <div class="nav-right">
+        <div class="dropdown">
+          <button class="dropdown-toggle" id="activeLanguage">
+            <span class="fi fi-es"></span> Español
+          </button>
+          <ul class="dropdown-menu">
+            <li onclick="setLanguage('es')"><span class="fi fi-es"></span> Español</li>
+            <li onclick="setLanguage('en')"><span class="fi fi-gb"></span> English</li>
+            <li onclick="setLanguage('pt')"><span class="fi fi-pt"></span> Português</li>
+          </ul>
+        </div>
+      </div>
     </div>
   </header>
 
   <div class="container">
-    <h1 id="title">SVG Magic for Power Apps</h1>
     <p id="subtitle">From SVG to fully usable Power FX and YAML — no hassle.</p>
 
     <!-- Enlace a la guía -->
     <p class="doc-link">
-      <a id="guideLink" href="https://learn.microsoft.com/en-us/power-apps/maker/canvas-apps/show-web-pages" target="_blank">
+      <a id="guideLink" href="https://github.com/sirbate/SVGMagic?tab=readme-ov-file#c%C3%B3mo-usar-la-herramienta" target="_blank">
         Guía: Cómo usar esta herramienta paso a paso
       </a>
     </p>
@@ -63,7 +80,7 @@
   <!-- Manual para principiantes -->
   <p class="guide-link">
     <span id="manualText">¿Nuevo usando SVG en Power Apps?</span>
-    <a id="manualLink" href="https://www.hakoit.com/en/svg-power-apps-tool-use-svg-in-power-apps/" target="_blank">
+    <a id="manualLink" href="https://github.com/sirbate/SVGMagic?tab=readme-ov-file#c%C3%B3mo-usar-un-svg-en-power-apps" target="_blank">
       Lee este manual práctico
     </a>
   </p>
@@ -99,20 +116,13 @@
           -2.7-4.42-2.7 0-3.1 2.1-3.1 4.28V24h-4V8.5z" />
         </svg>
       </a>
-      <a href="https://andresvelasquez.dev" target="_blank" aria-label="Portafolio Web">
-        <svg height="24" width="24" fill="#c9d1d9" viewBox="0 0 24 24">
-          <path d="M10 2h4a2 2 0 0 1 2 2v2h4a2 2 0 0 1 2 2v3H2V8a2 2 0 0 1 2-2h4V4a2 2 0 0 1 2-2zm4 4V4h-4v2h4zM2 11h20v7a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-7z"/>
-        </svg>
-      </a>
-      
-      
-      
-      
+
     </div>
   </footer>
+
+  <!-- Contenedor para las notificaciones toast -->
+  <div id="toastContainer" class="toast-container"></div>
 
   <script src="app.js"></script>
 </body>
 </html>
-
-
