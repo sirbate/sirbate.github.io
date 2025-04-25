@@ -84,7 +84,6 @@
   display: block;
 }
 
-/* 🌙 Estilos generales modo oscuro */
 body {
   background-color: #0d1117;
   color: #c9d1d9;
@@ -93,7 +92,6 @@ body {
   padding: 0;
 }
 
-/* Header principal con logo */
 .main-header {
   background-color: #0d1117;
   padding: 1.5rem 0;
@@ -159,7 +157,6 @@ p {
   margin-bottom: 2rem;
 }
 
-/* 🔤 Inputs y botones */
 .input-wrapper {
   display: flex;
   gap: 10px;
@@ -187,7 +184,6 @@ p {
   background-color: #39414a;
 }
 
-/* 📦 Vista previa SVG */
 .preview-box {
   background-color: #0d1117;
   border: 1px solid #30363d;
@@ -206,7 +202,6 @@ p {
   max-height: 150px;
 }
 
-/* 🎨 Color picker */
 .color-control {
   margin-bottom: 2rem;
 }
@@ -231,7 +226,6 @@ p {
   color: #C9D1D9;
 }
 
-/* 🧷 Botón principal */
 .button-row {
   display: flex;
   gap: 10px;
@@ -253,7 +247,6 @@ p {
   background-color: #1673d2;
 }
 
-/* Estilo para botones deshabilitados */
 .btn-primary:disabled,
 .btn-primary.btn-disabled {
   background-color: #30363d;
@@ -267,7 +260,6 @@ p {
   background-color: #30363d;
 }
 
-/* 🦶 Footer */
 .main-footer {
   border-top: 1px solid #30363D;
   margin-top: 4rem;
@@ -296,7 +288,6 @@ p {
   opacity: 0.8;
 }
 
-/* 📘 Enlaces de ayuda y documentación */
 .doc-link {
   margin-top: -1rem;
   margin-bottom: 2rem;
@@ -322,19 +313,18 @@ p {
   margin-bottom: 20px;
 }
 
-/* Scrollbar para navegadores basados en WebKit (Chrome, Edge, Safari) */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #1e1e1e; /* Fondo de la pista */
+  background: #1e1e1e; 
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #444;  /* Color del "pulgón" */
+  background-color: #444;  
   border-radius: 10px;
   border: 2px solid transparent;
   background-clip: content-box;
@@ -344,13 +334,11 @@ p {
   background-color: #666;
 }
 
-/* Firefox */
 * {
   scrollbar-width: thin;
   scrollbar-color: #444 #1e1e1e;
 }
 
-/* Estilos para Toast Notifications */
 .toast-container {
   position: fixed;
   top: 20px;
@@ -425,7 +413,6 @@ p {
   to { transform: translateX(120%); }
 }
 
-/* Estilos para el estado vacío del preview */
 .empty-state {
   display: flex;
   flex-direction: column;
