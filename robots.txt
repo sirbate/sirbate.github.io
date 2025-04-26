@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://sirbate.github.io/sitemap.xml 
