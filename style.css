@@ -1,4 +1,6 @@
+/* Variables de colores para temas */
 :root {
+  /* Tema claro */
   --bg-primary: #f5f8fd;
   --bg-secondary: #ffffff;
   --bg-tertiary: #eef3fc;
@@ -22,6 +24,7 @@
 }
 
 .dark-theme, html.dark-theme {
+  /* Tema oscuro */
   --bg-primary: #0d1117;
   --bg-secondary: #161b22;
   --bg-tertiary: #1c2129;
@@ -44,6 +47,7 @@
   --btn-shadow: 0 4px 12px rgba(31, 111, 235, 0.3);
 }
 
+/* Transición suave para cambio de tema */
 html {
   transition: background-color 0.5s ease, color 0.5s ease;
 }
@@ -52,6 +56,7 @@ body, html {
   transition: all 0.5s ease;
 }
 
+/* Estilo general del cuerpo */
 body {
   margin: 0;
   padding: 0;
@@ -60,24 +65,29 @@ body {
   font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   color: var(--text-primary);
   overflow-x: hidden;
+  /* Estructura para mantener el footer abajo */
   display: flex;
   flex-direction: column;
 }
 
+/* Contenedor principal para empujar el footer */
 .main-content-wrap {
   flex: 1;
 }
 
+/* Fondo para modo claro con degradado de blanco a azul claro */
 body:not(.dark-theme) {
   background: linear-gradient(135deg, #ffffff 0%, #f5f8fd 40%, #e0ebfa 80%, #d0e4ff 100%);
   background-attachment: fixed;
 }
 
+/* Fondo para modo oscuro con degradado github-style */
 body.dark-theme, html.dark-theme body {
   background: #0d1117;
   background-attachment: fixed;
 }
 
+/* Efecto de fondo mágico para el modo claro */
 body:not(.dark-theme)::before {
   content: "";
   position: fixed;
@@ -107,6 +117,7 @@ body:not(.dark-theme)::before {
   animation: driftBackground 180s linear infinite;
 }
 
+/* Segundo elemento para el modo claro */
 body:not(.dark-theme)::after {
   content: "";
   position: fixed;
@@ -133,6 +144,7 @@ body:not(.dark-theme)::after {
   animation: sparkleBackground 150s linear infinite;
 }
 
+/* Animación para el fondo principal */
 @keyframes driftBackground {
   from {
     background-position: 0 0;
@@ -142,6 +154,7 @@ body:not(.dark-theme)::after {
   }
 }
 
+/* Animación para la capa secundaria */
 @keyframes sparkleBackground {
   from {
     background-position: 0 0;
@@ -151,6 +164,7 @@ body:not(.dark-theme)::after {
   }
 }
 
+/* 🌍 Selector de idioma desplegable */
 .language-header {
   display: flex;
   justify-content: flex-end;
@@ -234,6 +248,7 @@ body:not(.dark-theme)::after {
   box-shadow: var(--card-shadow);
   isolation: isolate;
   transform: translateZ(0);
+  /* Animación */
   opacity: 0;
   transform: translateY(-10px);
   transition: opacity 0.2s ease, transform 0.2s ease;
@@ -268,6 +283,7 @@ body:not(.dark-theme)::after {
   transform: translateY(0);
 }
 
+/* Botón de cambio de tema */
 .theme-toggle {
   background-color: var(--bg-tertiary);
   border: 1px solid var(--border-color);
@@ -332,6 +348,7 @@ body:not(.dark-theme)::after {
   display: block;
 }
 
+/* Header con mejor separación visual */
 .main-header {
   background-color: var(--header-bg);
   padding: 1.5rem 0;
@@ -340,13 +357,16 @@ body:not(.dark-theme)::after {
   -webkit-backdrop-filter: blur(15px);
   z-index: 50;
   border: none;
+  /* Sombra sutil para crear separación */
   box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
 }
 
+/* Modo claro: header con fondo ligeramente transparente pero más visible */
 body:not(.dark-theme) .main-header {
   background-color: rgba(255, 255, 255, 0.8);
 }
 
+/* Modo oscuro: header con fondo ligeramente transparente pero más visible */
 body.dark-theme .main-header, html.dark-theme .main-header {
   background-color: rgba(13, 17, 23, 0.85);
   box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
@@ -400,6 +420,7 @@ body.dark-theme .main-header, html.dark-theme .main-header {
   position: relative;
 }
 
+/* Contenedor principal */
 .container {
   max-width: 1000px;
   margin: 2rem auto;
@@ -415,11 +436,13 @@ body.dark-theme .main-header, html.dark-theme .main-header {
   animation-delay: 0.1s;
 }
 
+/* Modo claro: contenedor con fondo ligeramente transparente */
 body:not(.dark-theme) .container {
   background-color: rgba(255, 255, 255, 0.85);
   box-shadow: 0 10px 30px rgba(31, 111, 235, 0.12);
 }
 
+/* Modo oscuro: contenedor con fondo ligeramente transparente */
 body.dark-theme .container, html.dark-theme .container {
   background-color: rgba(26, 29, 36, 0.8);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
@@ -523,6 +546,7 @@ p {
   animation-delay: 0.2s;
 }
 
+/* Efecto de grid en la caja de vista previa para modo claro */
 body:not(.dark-theme) .preview-box {
   background-color: rgba(248, 251, 255, 0.7);
   background-image: 
@@ -533,6 +557,7 @@ body:not(.dark-theme) .preview-box {
   box-shadow: 0 5px 15px rgba(31, 111, 235, 0.08);
 }
 
+/* Efecto para la caja de vista previa en modo oscuro */
 body.dark-theme .preview-box, html.dark-theme .preview-box {
   background-color: rgba(13, 17, 23, 0.8);
   background-image: 
@@ -563,10 +588,12 @@ body.dark-theme .preview-box, html.dark-theme .preview-box {
   animation-delay: 0.3s;
 }
 
+/* Modo claro: panel de control de color con fondo ligeramente transparente */
 body:not(.dark-theme) .color-control {
   background-color: rgba(238, 243, 252, 0.8);
 }
 
+/* Modo oscuro: panel de control de color con fondo ligeramente transparente */
 body.dark-theme .color-control, html.dark-theme .color-control {
   background-color: rgba(22, 27, 34, 0.9);
   border: 1px solid #30363d;
@@ -669,6 +696,7 @@ body.dark-theme .color-control, html.dark-theme .color-control {
   box-shadow: none;
 }
 
+/* Footer con mejor separación visual */
 .main-footer {
   border-top: none;
   padding: 2rem 1rem 1rem;
@@ -679,14 +707,17 @@ body.dark-theme .color-control, html.dark-theme .color-control {
   -webkit-backdrop-filter: blur(15px);
   position: relative;
   z-index: 20;
+  /* Sombra hacia arriba para separar visualmente */
   box-shadow: 0 -10px 25px -5px rgba(0, 0, 0, 0.1);
   width: 100%;
 }
 
+/* Footer para modo claro */
 body:not(.dark-theme) .main-footer {
   background-color: rgba(255, 255, 255, 0.8);
 }
 
+/* Footer para modo oscuro */
 body.dark-theme .main-footer, html.dark-theme .main-footer {
   background-color: rgba(13, 17, 23, 0.85);
   box-shadow: 0 -10px 25px -5px rgba(0, 0, 0, 0.2);
@@ -743,11 +774,13 @@ body.dark-theme .main-footer, html.dark-theme .main-footer {
   margin-bottom: 20px;
 }
 
+/* Personalización de barras de desplazamiento */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 
+/* Estilos para tema oscuro */
 .dark-theme ::-webkit-scrollbar-track, html.dark-theme ::-webkit-scrollbar-track {
   background: #1e202f; 
   border-radius: 10px;
@@ -764,6 +797,7 @@ body.dark-theme .main-footer, html.dark-theme .main-footer {
   background-color: #434871;
 }
 
+/* Estilos para tema claro */
 :not(.dark-theme) ::-webkit-scrollbar-track {
   background: #eef3fc; 
   border-radius: 10px;
@@ -900,6 +934,7 @@ body.dark-theme .main-footer, html.dark-theme .main-footer {
   font-weight: 500;
 }
 
+/* Color picker customization */
 .pcr-app {
   background: var(--bg-secondary);
   box-shadow: 0 5px 20px var(--shadow-color);
@@ -925,6 +960,7 @@ body.dark-theme .main-footer, html.dark-theme .main-footer {
   background: var(--accent-color);
 }
 
+/* Responsive styles */
 @media (max-width: 1100px) {
   .container {
     max-width: 900px;
@@ -1055,6 +1091,7 @@ body.dark-theme .main-footer, html.dark-theme .main-footer {
   }
 }
 
+/* Animaciones sutiles para elementos al cargar la página */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
@@ -1069,6 +1106,7 @@ body.dark-theme .main-footer, html.dark-theme .main-footer {
 .color-control { animation-delay: 0.3s; }
 .button-row { animation-delay: 0.4s; }
 
+/* Efecto mágico para el modo oscuro */
 body.dark-theme::before, html.dark-theme body::before {
   content: "";
   position: fixed;
@@ -1098,6 +1136,7 @@ body.dark-theme::before, html.dark-theme body::before {
   animation: driftBackground 150s linear infinite;
 }
 
+/* Añadimos un segundo elemento para crear un efecto de movimiento diferente para el modo oscuro */
 body.dark-theme::after, html.dark-theme body::after {
   content: "";
   position: fixed;
@@ -1124,6 +1163,7 @@ body.dark-theme::after, html.dark-theme body::after {
   animation: sparkleBackground 120s linear infinite;
 }
 
+/* Estilo para colorear el fondo completo */
 html::before,
 html::after,
 body::before,
@@ -1131,6 +1171,7 @@ body::after {
   z-index: -5;
 }
 
+/* Todo lo que use background-attachment: fixed debe tener un z-index bajo */
 body:not(.dark-theme),
 body.dark-theme, 
 html.dark-theme body {
@@ -1138,25 +1179,31 @@ html.dark-theme body {
   position: relative;
 }
 
+/* Los contenedores principales deben estar en nivel intermedio */
 .container {
   position: relative;
   z-index: 5;
 }
 
+/* Quitamos el efecto flotante */
+/* Mejora para el efecto de hover en los botones */
 .btn-primary:hover {
   transform: translateY(-3px);
   box-shadow: 0 8px 15px rgba(31, 111, 235, 0.3);
 }
 
+/* Efecto hover para los elementos interactivos */
 .upload-btn:hover, .dropdown-toggle:hover, .theme-toggle:hover {
   transform: translateY(-2px);
   box-shadow: 0 5px 10px var(--shadow-color);
 }
 
+/* Mejoramos la transición principal */
 .container, .main-header, .preview-box, .color-control, .button-row, .dropdown-toggle, .theme-toggle, .upload-btn, .btn-primary {
   transition: all 0.3s ease;
 }
 
+/* Animación más suave para los elementos de fondo */
 @keyframes driftBackground {
   0% {
     background-position: 0 0;
@@ -1183,4 +1230,17 @@ html.dark-theme body {
     background-position: -600px -600px;
     opacity: 0.7;
   }
+}
+
+/* Clase para ocultar elementos visualmente pero mantenerlos accesibles para lectores de pantalla */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+  white-space: nowrap;
 }
