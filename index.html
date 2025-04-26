@@ -1,9 +1,21 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="dark-theme">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-  <title>SVG Magic</title>
+  <meta name="description" content="Herramienta online gratuita para convertir SVG a código Power FX y YAML para Power Apps. Editor de SVG con opciones de personalización para desarrolladores." />
+  <meta name="keywords" content="SVG, Power Apps, Power FX, YAML, editor SVG, imágenes vectoriales, herramienta online, convertidor SVG, Microsoft Power Platform" />
+  <meta name="author" content="Sirbate" />
+  <meta name="theme-color" content="#1F6FEB" />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:title" content="SVG Tool - Editor y Convertidor de SVG para Power Apps" />
+  <meta property="og:description" content="Convierte SVG a código Power FX y YAML para tus aplicaciones de Power Apps de forma sencilla y rápida." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://sirbate.github.io/" />
+  <meta property="og:image" content="https://sirbate.github.io/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href="https://sirbate.github.io/" />
+  <title>SVG Tool - Editor y Convertidor de SVG para Power Apps</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath stroke='none' d='M0 0h24v24H0z' fill='none'/%3E%3Cpath d='M15 8h.01'/%3E%3Cpath d='M12 21h-6a3 3 0 0 1 -3 -3v-12a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v6'/%3E%3Cpath d='M3 16l5 -5c.928 -.893 2.072 -.893 3 0l3.993 3.993'/%3E%3Cpath d='M14 14l1 -1c.47 -.452 .995 -.675 1.52 -.67'/%3E%3Cpath d='M19 22.5a4.75 4.75 0 0 1 3.5 -3.5a4.75 4.75 0 0 1 -3.5 -3.5a4.75 4.75 0 0 1 -3.5 3.5a4.75 4.75 0 0 1 3.5 3.5'/%3E%3C/svg%3E" />
 
   <link rel="stylesheet" href="style.css" />
@@ -12,75 +24,94 @@
   <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr"></script>
 </head>
 <body>
-  <header class="main-header">
-    <div class="header-container">
-      <div class="logo-container">
-        <div class="logo">
-          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-            <path d="M15 8h.01"/>
-            <path d="M12 21h-6a3 3 0 0 1 -3 -3v-12a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v6"/>
-            <path d="M3 16l5 -5c.928 -.893 2.072 -.893 3 0l3.993 3.993"/>
-            <path d="M14 14l1 -1c.47 -.452 .995 -.675 1.52 -.67"/>
-            <path d="M19 22.5a4.75 4.75 0 0 1 3.5 -3.5a4.75 4.75 0 0 1 -3.5 -3.5a4.75 4.75 0 0 1 -3.5 3.5a4.75 4.75 0 0 1 3.5 3.5"/>
-          </svg>
+  <div class="main-content-wrap">
+    <header class="main-header">
+      <div class="header-container">
+        <div class="logo-container">
+          <div class="logo">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+              <path d="M15 8h.01"/>
+              <path d="M12 21h-6a3 3 0 0 1 -3 -3v-12a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v6"/>
+              <path d="M3 16l5 -5c.928 -.893 2.072 -.893 3 0l3.993 3.993"/>
+              <path d="M14 14l1 -1c.47 -.452 .995 -.675 1.52 -.67"/>
+              <path d="M19 22.5a4.75 4.75 0 0 1 3.5 -3.5a4.75 4.75 0 0 1 -3.5 -3.5a4.75 4.75 0 0 1 -3.5 3.5a4.75 4.75 0 0 1 3.5 3.5"/>
+            </svg>
+          </div>
+          <h1 class="logo-title" id="title">SVG Magic para Power Apps</h1>
         </div>
-        <h1 class="logo-title" id="title">SVG Magic para Power Apps</h1>
+        
+        <div class="nav-right">
+          <button id="themeToggle" class="theme-toggle" aria-label="Cambiar tema">
+            <svg class="theme-icon moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+            </svg>
+            <svg class="theme-icon sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="4"></circle>
+              <path d="M12 2v2"></path>
+              <path d="M12 20v2"></path>
+              <path d="m4.93 4.93 1.41 1.41"></path>
+              <path d="m17.66 17.66 1.41 1.41"></path>
+              <path d="M2 12h2"></path>
+              <path d="M20 12h2"></path>
+              <path d="m6.34 17.66-1.41 1.41"></path>
+              <path d="m19.07 4.93-1.41 1.41"></path>
+            </svg>
+          </button>
+          <div class="dropdown">
+            <button class="dropdown-toggle" id="activeLanguage">
+              <span class="fi fi-es"></span> Español
+            </button>
+            <ul class="dropdown-menu">
+              <li onclick="setLanguage('es')"><span class="fi fi-es"></span> Español</li>
+              <li onclick="setLanguage('en')"><span class="fi fi-gb"></span> English</li>
+              <li onclick="setLanguage('pt')"><span class="fi fi-pt"></span> Português</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <h1 class="visually-hidden">SVG Tool - Convertidor de SVG a Power FX y YAML</h1>
+      <p id="subtitle">From SVG to fully usable Power FX and YAML — no hassle.</p>
+
+      <p class="doc-link">
+        <a id="guideLink" href="https://github.com/sirbate/SVGMagic?tab=readme-ov-file#c%C3%B3mo-usar-la-herramienta" target="_blank">
+          Guía: Cómo usar esta herramienta paso a paso
+        </a>
+      </p>
+
+      <div class="input-wrapper">
+        <input id="svgInput" class="input-dark" placeholder="Pega tu SVG aquí" />
+        <label class="upload-btn" for="fileUpload" id="uploadLabel">Subir archivo</label>
+        <input type="file" id="fileUpload" accept=".svg" hidden />
+      </div>
+
+      <h2 id="previewLabel">Vista previa</h2>
+      <div class="preview-box" id="preview"></div>
+
+      <div id="colorControls" class="color-control" style="display:none">
+        <div class="color-label">
+          <div id="colorPickerContainer"></div>
+          <span id="colorCode">Haz clic para elegir un color</span>
+        </div>
+      </div>
+
+      <div class="button-row">
+        <button class="btn-primary" id="copyBtn" onclick="copyPowerFX()">COPIAR CÓDIGO POWER FX</button>
+        <button class="btn-primary" id="copyYamlBtn" onclick="copyYAML()">COPIAR BLOQUE YAML</button>
       </div>
       
-      <div class="nav-right">
-        <div class="dropdown">
-          <button class="dropdown-toggle" id="activeLanguage">
-            <span class="fi fi-es"></span> Español
-          </button>
-          <ul class="dropdown-menu">
-            <li onclick="setLanguage('es')"><span class="fi fi-es"></span> Español</li>
-            <li onclick="setLanguage('en')"><span class="fi fi-gb"></span> English</li>
-            <li onclick="setLanguage('pt')"><span class="fi fi-pt"></span> Português</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </header>
+    </main>
 
-  <div class="container">
-    <p id="subtitle">From SVG to fully usable Power FX and YAML — no hassle.</p>
-
-    <p class="doc-link">
-      <a id="guideLink" href="https://github.com/sirbate/SVGMagic?tab=readme-ov-file#c%C3%B3mo-usar-la-herramienta" target="_blank">
-        Guía: Cómo usar esta herramienta paso a paso
+    <p class="guide-link">
+      <span id="manualText">¿Nuevo usando SVG en Power Apps?</span>
+      <a id="manualLink" href="https://github.com/sirbate/SVGMagic?tab=readme-ov-file#c%C3%B3mo-usar-un-svg-en-power-apps" target="_blank">
+        Lee este manual práctico
       </a>
     </p>
-
-    <div class="input-wrapper">
-      <input id="svgInput" class="input-dark" placeholder="Pega tu SVG aquí" />
-      <label class="upload-btn" for="fileUpload" id="uploadLabel">Subir archivo</label>
-      <input type="file" id="fileUpload" accept=".svg" hidden />
-    </div>
-
-    <h2 id="previewLabel">Vista previa</h2>
-    <div class="preview-box" id="preview"></div>
-
-    <div id="colorControls" class="color-control" style="display:none">
-      <div class="color-label">
-        <div id="colorPickerContainer"></div>
-        <span id="colorCode">Haz clic para elegir un color</span>
-      </div>
-    </div>
-
-    <div class="button-row">
-      <button class="btn-primary" id="copyBtn" onclick="copyPowerFX()">COPIAR CÓDIGO POWER FX</button>
-      <button class="btn-primary" id="copyYamlBtn" onclick="copyYAML()">COPIAR BLOQUE YAML</button>
-    </div>
-    
   </div>
-
-  <p class="guide-link">
-    <span id="manualText">¿Nuevo usando SVG en Power Apps?</span>
-    <a id="manualLink" href="https://github.com/sirbate/SVGMagic?tab=readme-ov-file#c%C3%B3mo-usar-un-svg-en-power-apps" target="_blank">
-      Lee este manual práctico
-    </a>
-  </p>
 
   <footer class="main-footer">
     <p id="footerText">Desarrollado con ❤️ para la comunidad de Power Platform</p>
@@ -119,5 +150,26 @@
   <div id="toastContainer" class="toast-container"></div>
 
   <script src="app.js"></script>
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "SVG Tool para Power Apps",
+    "description": "Herramienta online para convertir SVG a código Power FX y YAML para aplicaciones en Power Apps.",
+    "url": "https://sirbate.github.io/",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "author": {
+      "@type": "Person",
+      "name": "Sirbate"
+    }
+  }
+  </script>
 </body>
 </html>
