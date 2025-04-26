@@ -1,3 +1,26 @@
+const themeToggle = document.getElementById('themeToggle');
+const htmlElement = document.documentElement;
+
+function getPreferredTheme() {
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme) {
+    return savedTheme;
+  }
+  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+}
+
+function applyTheme(theme) {
+  if (theme === 'dark') {
+    document.body.classList.add('dark-theme');
+    htmlElement.classList.add('dark-theme');
+  } else {
+    document.body.classList.remove('dark-theme');
+    htmlElement.classList.remove('dark-theme');
+  }
+  localStorage.setItem('theme', theme);
+}
+
+
 let svgOriginal = '';
 const svgInput = document.getElementById('svgInput');
 const preview = document.getElementById('preview');
@@ -18,6 +41,11 @@ const translations = {
     guide: "Cómo usar esta herramienta",
     manual: "¿Nuevo usando SVG en Power Apps?",
     manualLink: "Lee este manual práctico",
+    theme: {
+      toggle: "Cambiar tema",
+      light: "Modo claro",
+      dark: "Modo oscuro"
+    },
     toasts: {
       invalidFile: "Por favor, sube un archivo SVG válido.",
       copyPowerFX: "Código Power FX copiado al portapapeles",
@@ -38,6 +66,11 @@ const translations = {
     guide: "Learn how this tool works",
     manual: "New to SVG in Power Apps?",
     manualLink: "Read this practical guide",
+    theme: {
+      toggle: "Toggle theme",
+      light: "Light mode",
+      dark: "Dark mode"
+    },
     toasts: {
       invalidFile: "Please upload a valid SVG file.",
       copyPowerFX: "Power FX code copied to clipboard",
@@ -58,6 +91,11 @@ const translations = {
     guide: "Como usar esta ferramenta",
     manual: "Novo no uso de SVG no Power Apps?",
     manualLink: "Leia este guia prático",
+    theme: {
+      toggle: "Alternar tema",
+      light: "Modo claro",
+      dark: "Modo escuro"
+    },
     toasts: {
       invalidFile: "Por favor, envie um arquivo SVG válido.",
       copyPowerFX: "Código Power FX copiado para a área de transferência",
@@ -70,8 +108,37 @@ const translations = {
 
 const dropdown = document.querySelector('.dropdown');
 const activeLanguage = document.getElementById('activeLanguage');
-activeLanguage.addEventListener('click', () => {
-  dropdown.classList.toggle('open');
+const dropdownMenu = document.querySelector('.dropdown-menu');
+
+activeLanguage.addEventListener('click', (e) => {
+  e.stopPropagation();
+  
+  if (!dropdown.classList.contains('open')) {
+    const buttonRect = activeLanguage.getBoundingClientRect();
+    dropdownMenu.style.top = (buttonRect.bottom + window.scrollY) + 'px';
+    dropdownMenu.style.left = (buttonRect.left + window.scrollX) + 'px';
+    
+    setTimeout(() => {
+      dropdown.classList.add('open');
+    }, 10);
+  } else {
+    dropdown.classList.remove('open');
+  }
+});
+
+document.addEventListener('click', (e) => {
+  if (!dropdown.contains(e.target)) {
+    dropdown.classList.remove('open');
+  }
+});
+
+dropdownMenu.querySelectorAll('li').forEach(item => {
+  item.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const lang = e.currentTarget.getAttribute('onclick').match(/'([^']+)'/)[1];
+    setLanguage(lang);
+    dropdown.classList.remove('open');
+  });
 });
 
 let currentLanguage = 'en';
@@ -90,6 +157,7 @@ function setLanguage(lang) {
   document.getElementById('guideLink').textContent = t.guide;
   document.getElementById('manualText').textContent = t.manual;
   document.getElementById('manualLink').textContent = t.manualLink;
+  themeToggle.setAttribute('aria-label', t.theme.toggle);
 
   if (colorCodeText.textContent && colorCodeText.textContent.includes(':')) {
     const currentColor = colorCodeText.textContent.split(':')[1].trim();
@@ -105,12 +173,30 @@ function setLanguage(lang) {
   };
   const current = flags[lang];
   activeLanguage.innerHTML = `<span class="fi ${current.icon}"></span> ${current.label}`;
-  dropdown.classList.remove('open');
   
   if (!svgOriginal || !svgOriginal.includes('<svg')) {
     updatePreview('');
   }
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+  const theme = getPreferredTheme();
+  applyTheme(theme);
+});
+
+const initialTheme = getPreferredTheme();
+applyTheme(initialTheme);
+
+themeToggle.addEventListener('click', () => {
+  const isDark = htmlElement.classList.contains('dark-theme');
+  applyTheme(isDark ? 'light' : 'dark');
+});
+
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+  if (!localStorage.getItem('theme')) {
+    applyTheme(e.matches ? 'dark' : 'light');
+  }
+});
 
 const pickr = Pickr.create({
   el: '#colorPickerContainer',
