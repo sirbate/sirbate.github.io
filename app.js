@@ -1,11 +1,14 @@
+// Funcionalidad de cambio de tema
 const themeToggle = document.getElementById('themeToggle');
 const htmlElement = document.documentElement;
 
+// Verificar si hay preferencia de tema guardada
 function getPreferredTheme() {
   const savedTheme = localStorage.getItem('theme');
   if (savedTheme) {
     return savedTheme;
   }
+  // Si no hay preferencia guardada, usar preferencia del sistema
   return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 }
 
@@ -106,6 +109,7 @@ const translations = {
   }
 };
 
+// Funcionalidad para posicionar el menú desplegable correctamente
 const dropdown = document.querySelector('.dropdown');
 const activeLanguage = document.getElementById('activeLanguage');
 const dropdownMenu = document.querySelector('.dropdown-menu');
@@ -113,25 +117,31 @@ const dropdownMenu = document.querySelector('.dropdown-menu');
 activeLanguage.addEventListener('click', (e) => {
   e.stopPropagation();
   
+  // Si el menú está cerrado, lo abrimos y posicionamos
   if (!dropdown.classList.contains('open')) {
+    // Primero posicionamos el menú (antes de mostrarlo)
     const buttonRect = activeLanguage.getBoundingClientRect();
     dropdownMenu.style.top = (buttonRect.bottom + window.scrollY) + 'px';
     dropdownMenu.style.left = (buttonRect.left + window.scrollX) + 'px';
     
+    // Luego lo mostramos (para que la animación funcione bien)
     setTimeout(() => {
       dropdown.classList.add('open');
     }, 10);
   } else {
+    // Si ya está abierto, lo cerramos
     dropdown.classList.remove('open');
   }
 });
 
+// Cerrar el menú al hacer clic en cualquier parte
 document.addEventListener('click', (e) => {
   if (!dropdown.contains(e.target)) {
     dropdown.classList.remove('open');
   }
 });
 
+// Cerrar el menú al seleccionar un idioma
 dropdownMenu.querySelectorAll('li').forEach(item => {
   item.addEventListener('click', (e) => {
     e.stopPropagation();
@@ -179,19 +189,23 @@ function setLanguage(lang) {
   }
 }
 
+// Inicializar tema - Aplicar inmediatamente al cargar la página
 document.addEventListener('DOMContentLoaded', () => {
   const theme = getPreferredTheme();
   applyTheme(theme);
 });
 
+// Aplicar tema al inicio sin esperar el evento DOMContentLoaded
 const initialTheme = getPreferredTheme();
 applyTheme(initialTheme);
 
+// Cambiar tema al hacer clic en el botón
 themeToggle.addEventListener('click', () => {
   const isDark = htmlElement.classList.contains('dark-theme');
   applyTheme(isDark ? 'light' : 'dark');
 });
 
+// Escuchar cambios en la preferencia del sistema
 window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
   if (!localStorage.getItem('theme')) {
     applyTheme(e.matches ? 'dark' : 'light');
