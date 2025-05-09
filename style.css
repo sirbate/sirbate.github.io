@@ -47,13 +47,13 @@
   --btn-shadow: 0 4px 12px rgba(31, 111, 235, 0.3);
 }
 
-/* Transición suave para cambio de tema */
+/* Optimización de transiciones */
 html {
-  transition: background-color 0.5s ease, color 0.5s ease;
+  transition: background-color 0.3s ease;
 }
 
 body, html {
-  transition: all 0.5s ease;
+  transition: background-color 0.3s ease;
 }
 
 /* Estilo general del cuerpo */
@@ -161,6 +161,56 @@ body:not(.dark-theme)::after {
   }
   to {
     background-position: -600px -600px;
+  }
+}
+
+/* Optimización de animaciones de fondo */
+@media (prefers-reduced-motion: reduce) {
+  body:not(.dark-theme)::before,
+  body:not(.dark-theme)::after,
+  body.dark-theme::before,
+  body.dark-theme::after {
+    animation: none;
+  }
+}
+
+/* Desactivar animaciones en dispositivos móviles */
+@media (max-width: 768px) {
+  body:not(.dark-theme)::before,
+  body:not(.dark-theme)::after,
+  body.dark-theme::before,
+  body.dark-theme::after {
+    animation: none;
+    background-image: none;
+  }
+  
+  body:not(.dark-theme) {
+    background: var(--bg-primary);
+  }
+  
+  body.dark-theme {
+    background: var(--bg-primary);
+  }
+  
+  .container, .logo-title, .preview-box, .color-control, .button-row {
+    animation: none;
+  }
+}
+
+/* Optimizar transiciones en dispositivos móviles */
+@media (max-width: 768px) {
+  .dropdown-toggle,
+  .theme-toggle,
+  .upload-btn,
+  .btn-primary {
+    transition: background-color 0.2s ease;
+  }
+  
+  .dropdown-toggle:hover,
+  .theme-toggle:hover,
+  .upload-btn:hover,
+  .btn-primary:hover {
+    transform: none;
   }
 }
 
@@ -1098,7 +1148,9 @@ body.dark-theme .main-footer, html.dark-theme .main-footer {
 }
 
 .container, .logo-title, .preview-box, .color-control, .button-row {
-  animation: fadeIn 0.6s ease-out forwards;
+  animation: fadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  /* Solo animar transform y opacity */
+  will-change: transform, opacity;
 }
 
 .container { animation-delay: 0.1s; }
@@ -1200,7 +1252,7 @@ html.dark-theme body {
 
 /* Mejoramos la transición principal */
 .container, .main-header, .preview-box, .color-control, .button-row, .dropdown-toggle, .theme-toggle, .upload-btn, .btn-primary {
-  transition: all 0.3s ease;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s, opacity 0.3s;
 }
 
 /* Animación más suave para los elementos de fondo */
@@ -1243,4 +1295,68 @@ html.dark-theme body {
   clip: rect(0, 0, 0, 0);
   border: 0;
   white-space: nowrap;
+}
+
+/* Mejoras de rendimiento para animaciones y transiciones */
+
+/* 1. Limitar animaciones a transform y opacity */
+.container, .logo-title, .preview-box, .color-control, .button-row {
+  animation: fadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  /* Solo animar transform y opacity */
+  will-change: transform, opacity;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 2. Desactivar animaciones de fondo y entrada en móviles y con prefers-reduced-motion */
+@media (max-width: 768px), (prefers-reduced-motion: reduce) {
+  body:not(.dark-theme)::before,
+  body:not(.dark-theme)::after,
+  body.dark-theme::before,
+  body.dark-theme::after {
+    animation: none !important;
+    background-image: none !important;
+  }
+  .container, .logo-title, .preview-box, .color-control, .button-row {
+    animation: none !important;
+    will-change: auto;
+  }
+  .toast {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* 3. Reducir/eliminar transiciones globales innecesarias */
+.container, .main-header, .preview-box, .color-control, .button-row, .dropdown-toggle, .theme-toggle, .upload-btn, .btn-primary {
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s, opacity 0.3s;
+}
+
+/* 4. Optimizar hover: solo transform y opacity */
+.btn-primary:hover, .upload-btn:hover, .dropdown-toggle:hover, .theme-toggle:hover {
+  transform: translateY(-2px);
+  opacity: 0.95;
+  box-shadow: none;
+}
+
+/* 5. Eliminar animaciones de box-shadow y background en hover */
+.btn-primary:hover, .upload-btn:hover, .dropdown-toggle:hover, .theme-toggle:hover {
+  box-shadow: none !important;
+  background: var(--accent-color);
+}
+
+/* 6. Optimizar .toast animaciones */
+.toast {
+  will-change: transform, opacity;
+  animation: slide-in 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards, slide-out 0.3s 2.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@media (max-width: 768px), (prefers-reduced-motion: reduce) {
+  .toast {
+    animation: none !important;
+    transition: none !important;
+  }
 }
