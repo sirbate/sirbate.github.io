@@ -248,24 +248,77 @@ function cleanSvgCode(svgCode) {
   return svgCode;
 }
 
-svgInput.addEventListener('input', () => {
-  svgOriginal = cleanSvgCode(svgInput.value);
-  updatePreview(svgOriginal);
-});
+// Optimización de eventos y renderizado
+function debounce(func, wait) {
+  let timeout;
+  return function executedFunction(...args) {
+    const later = () => {
+      clearTimeout(timeout);
+      func(...args);
+    };
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+  };
+}
 
+// Optimizar el manejo de cambios en el SVG
+const updatePreview = debounce((svg) => {
+  if (!svg || !svg.includes('<svg')) {
+    preview.innerHTML = `
+      <div class="empty-state">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 22h14a2 2 0 0 0 2-2V7.5L14.5 2H6a2 2 0 0 0-2 2v4"></path>
+          <path d="M14 2v6h6"></path>
+          <path d="M2 15h10"></path>
+          <path d="M9 18l3-3-3-3"></path>
+        </svg>
+        <p class="empty-state-text">${translations[currentLanguage].emptySvgMessage}</p>
+      </div>
+    `;
+    updateButtonsState(false);
+    colorControls.style.display = 'none';
+    return;
+  }
+
+  const cleanedSvg = cleanSvgCode(svg);
+  preview.innerHTML = cleanedSvg;
+  updateButtonsState(true);
+
+  // Mostrar el control de color solo si hay un único color en fill o stroke
+  const fillMatches = [...cleanedSvg.matchAll(/fill=['"](.*?)['"]/g)].map(m => m[1]).filter(c => c !== 'none' && c !== 'currentColor');
+  const strokeMatches = [...cleanedSvg.matchAll(/stroke=['"](.*?)['"]/g)].map(m => m[1]).filter(c => c !== 'none' && c !== 'currentColor');
+  const allColors = [...new Set([...fillMatches, ...strokeMatches])];
+
+  if (allColors.length === 1) {
+    colorControls.style.display = 'block';
+  } else {
+    colorControls.style.display = 'none';
+  }
+}, 150);
+
+// Optimizar el manejo de archivos
 fileUpload.addEventListener('change', (e) => {
   const file = e.target.files[0];
-  if (!file || file.type !== 'image/svg+xml') {
+  if (!file) return;
+
+  if (file.type !== 'image/svg+xml') {
     showToast('invalidFile', 'error');
     return;
   }
+
   const reader = new FileReader();
-  reader.onload = function (event) {
-    svgOriginal = cleanSvgCode(event.target.result);
+  reader.onload = (event) => {
+    svgOriginal = event.target.result;
     svgInput.value = svgOriginal;
     updatePreview(svgOriginal);
   };
   reader.readAsText(file);
+});
+
+// Optimizar el manejo del input
+svgInput.addEventListener('input', (e) => {
+  svgOriginal = e.target.value;
+  updatePreview(svgOriginal);
 });
 
 const copyBtn = document.getElementById('copyBtn');
@@ -282,66 +335,6 @@ function updateButtonsState(hasContent) {
     copyBtn.classList.remove('btn-disabled');
     copyYamlBtn.classList.remove('btn-disabled');
   }
-}
-
-function updatePreview(svg) {
-  const hasSvgContent = svg && svg.trim() && svg.includes('<svg');
-  
-  updateButtonsState(hasSvgContent);
-  
-  if (!hasSvgContent) {
-    const emptyMessage = translations[currentLanguage].emptySvgMessage;
-    preview.innerHTML = `
-      <div class="empty-state">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M4 22h14a2 2 0 0 0 2-2V7.5L14.5 2H6a2 2 0 0 0-2 2v4"></path>
-          <path d="M14 2v6h6"></path>
-          <path d="M2 15h10"></path>
-          <path d="M9 18l3-3-3-3"></path>
-        </svg>
-        <p class="empty-state-text">${emptyMessage}</p>
-      </div>
-    `;
-    colorControls.style.display = 'none';
-    return;
-  }
-
-  const fillMatches = [...svg.matchAll(/fill=['"](.*?)['"]/g)];
-  const strokeMatches = [...svg.matchAll(/stroke=['"](.*?)['"]/g)];
-  
-  const uniqueFills = [...new Set(fillMatches.map(m => m[1]))].filter(c => c !== 'none');
-  const uniqueStrokes = [...new Set(strokeMatches.map(m => m[1]))].filter(c => c !== 'none');
-
-  const allColors = [...uniqueFills, ...uniqueStrokes];
-  const totalUniqueColors = new Set(allColors).size;
-  
-  const showColorPicker = totalUniqueColors === 1 || 
-    (uniqueFills.length === 1 && uniqueStrokes.length === 0) || 
-    (uniqueStrokes.length === 1 && uniqueFills.length === 0);
-
-  if (showColorPicker) {
-    colorControls.style.display = 'flex';
-    
-    let colorValue;
-    if (uniqueFills.length === 1) {
-      colorValue = uniqueFills[0];
-    } else if (uniqueStrokes.length === 1) {
-      colorValue = uniqueStrokes[0];
-    }
-    
-    if (colorValue && colorValue !== 'currentColor' && colorValue !== 'none') {
-      try {
-        pickr.setColor(colorValue);
-        updateColorPickerButton(colorValue);
-      } catch (e) {
-        console.log('No se pudo establecer el color:', e);
-      }
-    }
-  } else {
-    colorControls.style.display = 'none';
-  }
-
-  preview.innerHTML = svg.replace(/"/g, "'");
 }
 
 function applyColorToSvg(svg, newColor) {
