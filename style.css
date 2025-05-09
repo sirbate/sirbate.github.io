@@ -47,13 +47,13 @@
   --btn-shadow: 0 4px 12px rgba(31, 111, 235, 0.3);
 }
 
-/* Optimización de transiciones */
+/* Transición suave para cambio de tema - DESACTIVADA PARA MEJORA DE RENDIMIENTO */
 html {
-  transition: background-color 0.3s ease;
+  transition: none;
 }
 
 body, html {
-  transition: background-color 0.3s ease;
+  transition: none;
 }
 
 /* Estilo general del cuerpo */
@@ -87,7 +87,7 @@ body.dark-theme, html.dark-theme body {
   background-attachment: fixed;
 }
 
-/* Efecto de fondo mágico para el modo claro */
+/* Efecto de fondo mágico para el modo claro - DESACTIVADO PARA MEJORAR RENDIMIENTO */
 body:not(.dark-theme)::before {
   content: "";
   position: fixed;
@@ -114,10 +114,10 @@ body:not(.dark-theme)::before {
   background-size: 600px 600px;
   z-index: -1;
   pointer-events: none;
-  animation: driftBackground 180s linear infinite;
+  animation: none; /* DESACTIVADA LA ANIMACIÓN */
 }
 
-/* Segundo elemento para el modo claro */
+/* Segundo elemento para el modo claro - DESACTIVADO PARA MEJORAR RENDIMIENTO */
 body:not(.dark-theme)::after {
   content: "";
   position: fixed;
@@ -141,77 +141,18 @@ body:not(.dark-theme)::after {
   background-size: 600px 600px;
   z-index: -1;
   pointer-events: none;
-  animation: sparkleBackground 150s linear infinite;
+  animation: none; /* DESACTIVADA LA ANIMACIÓN */
 }
 
-/* Animación para el fondo principal */
+/* Animaciones de fondo - DESACTIVADAS PARA MEJOR RENDIMIENTO */
 @keyframes driftBackground {
-  from {
-    background-position: 0 0;
-  }
-  to {
-    background-position: 600px 600px;
-  }
+  from { background-position: 0 0; }
+  to { background-position: 0 0; }
 }
 
-/* Animación para la capa secundaria */
 @keyframes sparkleBackground {
-  from {
-    background-position: 0 0;
-  }
-  to {
-    background-position: -600px -600px;
-  }
-}
-
-/* Optimización de animaciones de fondo */
-@media (prefers-reduced-motion: reduce) {
-  body:not(.dark-theme)::before,
-  body:not(.dark-theme)::after,
-  body.dark-theme::before,
-  body.dark-theme::after {
-    animation: none;
-  }
-}
-
-/* Desactivar animaciones en dispositivos móviles */
-@media (max-width: 768px) {
-  body:not(.dark-theme)::before,
-  body:not(.dark-theme)::after,
-  body.dark-theme::before,
-  body.dark-theme::after {
-    animation: none;
-    background-image: none;
-  }
-  
-  body:not(.dark-theme) {
-    background: var(--bg-primary);
-  }
-  
-  body.dark-theme {
-    background: var(--bg-primary);
-  }
-  
-  .container, .logo-title, .preview-box, .color-control, .button-row {
-    animation: none;
-  }
-}
-
-/* Optimizar transiciones en dispositivos móviles */
-@media (max-width: 768px) {
-  .dropdown-toggle,
-  .theme-toggle,
-  .upload-btn,
-  .btn-primary {
-    transition: background-color 0.2s ease;
-  }
-  
-  .dropdown-toggle:hover,
-  .theme-toggle:hover,
-  .upload-btn:hover,
-  .btn-primary:hover {
-    transform: none;
-  }
+  from { background-position: 0 0; }
+  to { background-position: 0 0; }
 }
 
 /* 🌍 Selector de idioma desplegable */
@@ -244,7 +185,7 @@ body:not(.dark-theme)::after {
   font-weight: 500;
   padding: 10px 14px;
   border-radius: 8px;
-  transition: all 0.2s ease;
+  transition: none; /* DESACTIVADA LA TRANSICIÓN */
   box-shadow: var(--input-shadow);
   position: relative;
   overflow: hidden;
@@ -260,7 +201,7 @@ body:not(.dark-theme)::after {
   height: 100%;
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 60%);
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: none; /* DESACTIVADA LA TRANSICIÓN */
   z-index: -1;
 }
 
@@ -268,7 +209,7 @@ body:not(.dark-theme)::after {
   background-color: var(--accent-color);
   border-color: var(--accent-color);
   color: white;
-  transform: translateY(-1px);
+  transform: none; /* ELIMINADO EL EFECTO DE ELEVACIÓN */
 }
 
 .dropdown-toggle:hover::after {
@@ -301,7 +242,7 @@ body:not(.dark-theme)::after {
   /* Animación */
   opacity: 0;
   transform: translateY(-10px);
-  transition: opacity 0.2s ease, transform 0.2s ease;
+  transition: none; /* DESACTIVADA LA TRANSICIÓN */
 }
 
 .dropdown-menu li {
@@ -312,7 +253,7 @@ body:not(.dark-theme)::after {
   align-items: center;
   gap: 8px;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: none; /* DESACTIVADA LA TRANSICIÓN */
 }
 
 .dropdown-menu li:hover {
@@ -345,7 +286,7 @@ body:not(.dark-theme)::after {
   align-items: center;
   justify-content: center;
   margin-right: 10px;
-  transition: all 0.2s ease;
+  transition: none; /* DESACTIVADA LA TRANSICIÓN */
   box-shadow: var(--input-shadow);
   position: relative;
   overflow: hidden;
@@ -361,7 +302,7 @@ body:not(.dark-theme)::after {
   height: 100%;
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 60%);
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: none; /* DESACTIVADA LA TRANSICIÓN */
   z-index: -1;
 }
 
@@ -369,7 +310,7 @@ body:not(.dark-theme)::after {
   background-color: var(--accent-color);
   border-color: var(--accent-color);
   color: white;
-  transform: translateY(-1px);
+  transform: none; /* ELIMINADO EL EFECTO DE ELEVACIÓN */
 }
 
 .theme-toggle:hover::after {
@@ -459,8 +400,8 @@ body.dark-theme .main-header, html.dark-theme .main-header {
   -webkit-text-fill-color: transparent;
   background-clip: text;
   text-fill-color: transparent;
-  animation: fadeIn 0.6s ease-out forwards;
-  animation-delay: 0.2s;
+  animation: none; /* DESACTIVADA LA ANIMACIÓN */
+  animation-delay: 0;
 }
 
 .nav-right {
@@ -482,8 +423,9 @@ body.dark-theme .main-header, html.dark-theme .main-header {
   backdrop-filter: blur(10px);
   position: relative;
   z-index: 5;
-  animation: fadeIn 0.6s ease-out forwards;
-  animation-delay: 0.1s;
+  animation: none; /* DESACTIVADA LA ANIMACIÓN */
+  animation-delay: 0;
+  transition: none;
 }
 
 /* Modo claro: contenedor con fondo ligeramente transparente */
@@ -524,14 +466,14 @@ p {
   color: var(--text-primary);
   box-shadow: var(--input-shadow);
   font-size: 1rem;
-  transition: all 0.3s ease;
+  transition: none; /* DESACTIVADA LA TRANSICIÓN */
 }
 
 .input-dark:focus {
   border-color: var(--accent-color);
   outline: none;
   box-shadow: 0 0 0 2px rgba(31, 111, 235, 0.15), 0 5px 15px rgba(31, 111, 235, 0.1);
-  transform: translateY(-1px);
+  transform: none; /* ELIMINADO EL EFECTO DE ELEVACIÓN */
 }
 
 .upload-btn {
@@ -547,7 +489,7 @@ p {
   justify-content: center;
   border: 1px solid var(--input-border);
   box-shadow: var(--input-shadow);
-  transition: all 0.2s ease;
+  transition: none; /* DESACTIVADA LA TRANSICIÓN */
   position: relative;
   overflow: hidden;
   z-index: 1;
@@ -560,9 +502,9 @@ p {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 60%);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 60%);
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: none; /* DESACTIVADA LA TRANSICIÓN */
   z-index: -1;
 }
 
@@ -570,8 +512,8 @@ p {
   background-color: var(--accent-color);
   border-color: var(--accent-color);
   color: white;
-  transform: translateY(-1px);
-  box-shadow: 0 6px 15px rgba(31, 111, 235, 0.2);
+  transform: none; /* ELIMINADO EL EFECTO DE ELEVACIÓN */
+  box-shadow: none; /* ELIMINADA LA SOMBRA EN HOVER */
 }
 
 .upload-btn:hover::before {
@@ -592,8 +534,8 @@ p {
   backdrop-filter: blur(5px);
   position: relative;
   z-index: 1;
-  animation: fadeIn 0.6s ease-out forwards;
-  animation-delay: 0.2s;
+  animation: none; /* DESACTIVADA LA ANIMACIÓN */
+  animation-delay: 0;
 }
 
 /* Efecto de grid en la caja de vista previa para modo claro */
@@ -634,8 +576,8 @@ body.dark-theme .preview-box, html.dark-theme .preview-box {
   box-shadow: var(--input-shadow);
   border: 1px solid var(--input-border);
   backdrop-filter: blur(5px);
-  animation: fadeIn 0.6s ease-out forwards;
-  animation-delay: 0.3s;
+  animation: none; /* DESACTIVADA LA ANIMACIÓN */
+  animation-delay: 0;
 }
 
 /* Modo claro: panel de control de color con fondo ligeramente transparente */
@@ -662,12 +604,12 @@ body.dark-theme .color-control, html.dark-theme .color-control {
   border: 2px solid var(--border-color);
   box-shadow: 0 1px 3px var(--shadow-color);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: none; /* DESACTIVADA LA TRANSICIÓN */
 }
 
 #colorPickerContainer:hover {
-  transform: scale(1.05);
-  box-shadow: 0 3px 8px var(--shadow-color);
+  transform: none; /* ELIMINADO EL EFECTO DE ELEVACIÓN */
+  box-shadow: none; /* ELIMINADA LA SOMBRA EN HOVER */
 }
 
 #colorCode {
@@ -681,8 +623,8 @@ body.dark-theme .color-control, html.dark-theme .color-control {
   gap: 15px;
   justify-content: center;
   margin-top: 1.5rem;
-  animation: fadeIn 0.6s ease-out forwards;
-  animation-delay: 0.4s;
+  animation: none; /* DESACTIVADA LA ANIMACIÓN */
+  animation-delay: 0;
 }
 
 .btn-primary {
@@ -694,7 +636,7 @@ body.dark-theme .color-control, html.dark-theme .color-control {
   font-weight: 600;
   font-size: 0.95rem;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: none; /* DESACTIVADA LA TRANSICIÓN */
   box-shadow: var(--btn-shadow);
   letter-spacing: 0.5px;
   position: relative;
@@ -709,16 +651,17 @@ body.dark-theme .color-control, html.dark-theme .color-control {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 50%);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 60%);
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: none; /* DESACTIVADA LA TRANSICIÓN */
   z-index: -1;
 }
 
 .btn-primary:hover {
-  background-image: linear-gradient(135deg, #3a8aff, #1257c0);
-  transform: translateY(-3px);
-  box-shadow: 0 8px 15px rgba(31, 111, 235, 0.3);
+  background-image: var(--accent-gradient);
+  transform: none; /* ELIMINADO EL EFECTO DE ELEVACIÓN */
+  box-shadow: none; /* ELIMINADA LA SOMBRA EN HOVER */
+  transition: none;
 }
 
 .btn-primary:hover::before {
@@ -726,8 +669,8 @@ body.dark-theme .color-control, html.dark-theme .color-control {
 }
 
 .btn-primary:active {
-  transform: translateY(0);
-  box-shadow: 0 2px 8px rgba(31, 111, 235, 0.2);
+  transform: none; /* ELIMINADO EL EFECTO DE ELEVACIÓN */
+  box-shadow: none; /* ELIMINADA LA SOMBRA EN HOVER */
 }
 
 .btn-primary:disabled,
@@ -784,12 +727,12 @@ body.dark-theme .main-footer, html.dark-theme .main-footer {
 }
 
 .social-links a {
-  transition: transform 0.2s ease, color 0.2s ease;
+  transition: none; /* DESACTIVADA LA TRANSICIÓN */
   color: var(--text-secondary);
 }
 
 .social-links a:hover {
-  transform: scale(1.1);
+  transform: none; /* ELIMINADO EL EFECTO DE ELEVACIÓN */
   color: var(--accent-color);
 }
 
@@ -807,7 +750,7 @@ body.dark-theme .main-footer, html.dark-theme .main-footer {
   color: var(--accent-color);
   font-weight: 500;
   text-decoration: none;
-  transition: color 0.2s ease;
+  transition: none; /* DESACTIVADA LA TRANSICIÓN */
 }
 
 .doc-link a:hover,
@@ -951,63 +894,127 @@ body.dark-theme .main-footer, html.dark-theme .main-footer {
   to { transform: translateX(120%); }
 }
 
-.empty-state {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-  text-align: center;
+@keyframes fadeIn {
+  from { opacity: 1; }
+  to { opacity: 1; }
+}
+
+.container, .logo-title, .preview-box, .color-control, .button-row {
+  animation: none;
+}
+
+.container { animation-delay: 0; }
+.preview-box { animation-delay: 0; }
+.color-control { animation-delay: 0; }
+.button-row { animation-delay: 0; }
+
+/* Efecto mágico para el modo oscuro */
+body.dark-theme::before, html.dark-theme body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
   height: 100%;
-  color: var(--text-secondary);
-  padding: 30px;
+  background-image: 
+    radial-gradient(2px 2px at 40px 60px, #3a8aff 50%, transparent 100%),
+    radial-gradient(2px 2px at 20px 50px, #4fa0ff 50%, transparent 100%),
+    radial-gradient(2px 2px at 30px 100px, #2979ff 50%, transparent 100%),
+    radial-gradient(2px 2px at 40px 120px, #1F6FEB 50%, transparent 100%),
+    radial-gradient(2px 2px at 110px 80px, #4fa0ff 50%, transparent 100%),
+    radial-gradient(2px 2px at 160px 10px, #1F6FEB 50%, transparent 100%),
+    radial-gradient(2px 2px at 200px 70px, #3a8aff 50%, transparent 100%),
+    radial-gradient(2px 2px at 300px 20px, #2979ff 50%, transparent 100%),
+    radial-gradient(3px 3px at 40% 25%, rgba(56, 139, 253, 0.4) 50%, transparent 100%),
+    radial-gradient(3px 3px at 90% 10%, rgba(31, 111, 235, 0.3) 50%, transparent 100%),
+    radial-gradient(3px 3px at 10% 90%, rgba(56, 139, 253, 0.4) 50%, transparent 100%),
+    radial-gradient(3px 3px at 80% 80%, rgba(31, 111, 235, 0.3) 50%, transparent 100%),
+    radial-gradient(4px 4px at 70% 40%, rgba(56, 139, 253, 0.2) 50%, transparent 100%),
+    radial-gradient(5px 5px at 15% 15%, rgba(31, 111, 235, 0.3) 50%, transparent 100%),
+    radial-gradient(6px 6px at 40% 70%, rgba(56, 139, 253, 0.15) 50%, transparent 100%);
+  background-size: 600px 600px;
+  z-index: -1;
+  pointer-events: none;
+  animation: none; /* DESACTIVADA LA ANIMACIÓN */
 }
 
-.empty-state svg {
-  width: 65px;
-  height: 65px;
-  color: var(--accent-color);
-  opacity: 0.7;
-  transition: all 0.3s ease;
-  filter: drop-shadow(0 2px 4px rgba(31, 111, 235, 0.2));
+/* Añadimos un segundo elemento para crear un efecto de movimiento diferente para el modo oscuro */
+body.dark-theme::after, html.dark-theme body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(1px 1px at 250px 200px, #3a8aff 50%, transparent 100%),
+    radial-gradient(1px 1px at 350px 350px, #4fa0ff 50%, transparent 100%),
+    radial-gradient(1px 1px at 450px 150px, #2979ff 50%, transparent 100%),
+    radial-gradient(1px 1px at 150px 300px, #1F6FEB 50%, transparent 100%),
+    radial-gradient(1px 1px at 310px 230px, #4fa0ff 50%, transparent 100%),
+    radial-gradient(1px 1px at 560px 310px, #1F6FEB 50%, transparent 100%),
+    radial-gradient(1px 1px at 400px 270px, #3a8aff 50%, transparent 100%),
+    radial-gradient(1px 1px at 500px 120px, #2979ff 50%, transparent 100%),
+    radial-gradient(2px 2px at 65% 60%, rgba(56, 139, 253, 0.15) 50%, transparent 100%),
+    radial-gradient(2px 2px at 30% 40%, rgba(31, 111, 235, 0.15) 50%, transparent 100%),
+    radial-gradient(2px 2px at 85% 50%, rgba(56, 139, 253, 0.15) 50%, transparent 100%),
+    radial-gradient(2px 2px at 75% 23%, rgba(31, 111, 235, 0.15) 50%, transparent 100%);
+  background-size: 600px 600px;
+  z-index: -1;
+  pointer-events: none;
+  animation: none; /* DESACTIVADA LA ANIMACIÓN */
 }
 
-.empty-state:hover svg {
-  transform: translateY(-3px);
-  opacity: 0.9;
+/* Todo lo que use background-attachment: fixed debe tener un z-index bajo */
+body:not(.dark-theme),
+body.dark-theme, 
+html.dark-theme body {
+  z-index: -2;
+  position: relative;
+  transition: none;
 }
 
-.empty-state-text {
-  font-size: 1rem;
-  max-width: 80%;
-  line-height: 1.6;
-  font-weight: 500;
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+  white-space: nowrap;
 }
 
-/* Color picker customization */
-.pcr-app {
-  background: var(--bg-secondary);
-  box-shadow: 0 5px 20px var(--shadow-color);
-  border: 1px solid var(--border-color);
-  border-radius: 12px;
+/* 
+ * OPTIMIZACIÓN PARA MÓVILES:
+ * En dispositivos móviles, simplificamos aún más los fondos y animaciones
+ */
+@media (max-width: 768px) {
+  body:not(.dark-theme)::before,
+  body:not(.dark-theme)::after,
+  body.dark-theme::before,
+  body.dark-theme::after,
+  html.dark-theme body::before,
+  html.dark-theme body::after {
+    display: none;
+  }
+  
+  body:not(.dark-theme) {
+    background: #f5f8fd;
+  }
+  
+  body.dark-theme, html.dark-theme body {
+    background: #0d1117;
+  }
 }
 
-.pcr-app .pcr-interaction input {
-  background: var(--input-bg);
-  color: var(--text-primary);
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  font-size: 0.95rem;
-  transition: all 0.2s ease;
-}
-
-.pcr-app .pcr-interaction input:focus {
-  border-color: var(--accent-color);
-  box-shadow: 0 0 0 2px rgba(31, 111, 235, 0.15);
-}
-
-.pcr-app .pcr-type.active {
-  background: var(--accent-color);
+/* ELIMINANDO TRANSICIONES PARA MEJOR RENDIMIENTO */
+html::before,
+html::after,
+body::before,
+body::after {
+  transition: none;
 }
 
 /* Responsive styles */
@@ -1141,222 +1148,62 @@ body.dark-theme .main-footer, html.dark-theme .main-footer {
   }
 }
 
-/* Animaciones sutiles para elementos al cargar la página */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.container, .logo-title, .preview-box, .color-control, .button-row {
-  animation: fadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-  /* Solo animar transform y opacity */
-  will-change: transform, opacity;
-}
-
-.container { animation-delay: 0.1s; }
-.preview-box { animation-delay: 0.2s; }
-.color-control { animation-delay: 0.3s; }
-.button-row { animation-delay: 0.4s; }
-
-/* Efecto mágico para el modo oscuro */
-body.dark-theme::before, html.dark-theme body::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
+/* Estilos para el estado vacío */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  text-align: center;
   height: 100%;
-  background-image: 
-    radial-gradient(2px 2px at 40px 60px, #3a8aff 50%, transparent 100%),
-    radial-gradient(2px 2px at 20px 50px, #4fa0ff 50%, transparent 100%),
-    radial-gradient(2px 2px at 30px 100px, #2979ff 50%, transparent 100%),
-    radial-gradient(2px 2px at 40px 120px, #1F6FEB 50%, transparent 100%),
-    radial-gradient(2px 2px at 110px 80px, #4fa0ff 50%, transparent 100%),
-    radial-gradient(2px 2px at 160px 10px, #1F6FEB 50%, transparent 100%),
-    radial-gradient(2px 2px at 200px 70px, #3a8aff 50%, transparent 100%),
-    radial-gradient(2px 2px at 300px 20px, #2979ff 50%, transparent 100%),
-    radial-gradient(3px 3px at 40% 25%, rgba(56, 139, 253, 0.4) 50%, transparent 100%),
-    radial-gradient(3px 3px at 90% 10%, rgba(31, 111, 235, 0.3) 50%, transparent 100%),
-    radial-gradient(3px 3px at 10% 90%, rgba(56, 139, 253, 0.4) 50%, transparent 100%),
-    radial-gradient(3px 3px at 80% 80%, rgba(31, 111, 235, 0.3) 50%, transparent 100%),
-    radial-gradient(4px 4px at 70% 40%, rgba(56, 139, 253, 0.2) 50%, transparent 100%),
-    radial-gradient(5px 5px at 15% 15%, rgba(31, 111, 235, 0.3) 50%, transparent 100%),
-    radial-gradient(6px 6px at 40% 70%, rgba(56, 139, 253, 0.15) 50%, transparent 100%);
-  background-size: 600px 600px;
-  z-index: -1;
-  pointer-events: none;
-  animation: driftBackground 150s linear infinite;
+  color: var(--text-secondary);
+  padding: 30px;
 }
 
-/* Añadimos un segundo elemento para crear un efecto de movimiento diferente para el modo oscuro */
-body.dark-theme::after, html.dark-theme body::after {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: 
-    radial-gradient(1px 1px at 250px 200px, #3a8aff 50%, transparent 100%),
-    radial-gradient(1px 1px at 350px 350px, #4fa0ff 50%, transparent 100%),
-    radial-gradient(1px 1px at 450px 150px, #2979ff 50%, transparent 100%),
-    radial-gradient(1px 1px at 150px 300px, #1F6FEB 50%, transparent 100%),
-    radial-gradient(1px 1px at 310px 230px, #4fa0ff 50%, transparent 100%),
-    radial-gradient(1px 1px at 560px 310px, #1F6FEB 50%, transparent 100%),
-    radial-gradient(1px 1px at 400px 270px, #3a8aff 50%, transparent 100%),
-    radial-gradient(1px 1px at 500px 120px, #2979ff 50%, transparent 100%),
-    radial-gradient(2px 2px at 65% 60%, rgba(56, 139, 253, 0.15) 50%, transparent 100%),
-    radial-gradient(2px 2px at 30% 40%, rgba(31, 111, 235, 0.15) 50%, transparent 100%),
-    radial-gradient(2px 2px at 85% 50%, rgba(56, 139, 253, 0.15) 50%, transparent 100%),
-    radial-gradient(2px 2px at 75% 23%, rgba(31, 111, 235, 0.15) 50%, transparent 100%);
-  background-size: 600px 600px;
-  z-index: -1;
-  pointer-events: none;
-  animation: sparkleBackground 120s linear infinite;
+.empty-state svg {
+  width: 65px;
+  height: 65px;
+  color: var(--accent-color);
+  opacity: 0.7;
+  transition: none; /* DESACTIVADA LA TRANSICIÓN */
+  filter: drop-shadow(0 2px 4px rgba(31, 111, 235, 0.2));
 }
 
-/* Estilo para colorear el fondo completo */
-html::before,
-html::after,
-body::before,
-body::after {
-  z-index: -5;
+.empty-state:hover svg {
+  transform: none; /* ELIMINADO EL EFECTO DE ELEVACIÓN */
+  opacity: 0.9;
 }
 
-/* Todo lo que use background-attachment: fixed debe tener un z-index bajo */
-body:not(.dark-theme),
-body.dark-theme, 
-html.dark-theme body {
-  z-index: -2;
-  position: relative;
+.empty-state-text {
+  font-size: 1rem;
+  max-width: 80%;
+  line-height: 1.6;
+  font-weight: 500;
 }
 
-/* Los contenedores principales deben estar en nivel intermedio */
-.container {
-  position: relative;
-  z-index: 5;
+/* Color picker customization */
+.pcr-app {
+  background: var(--bg-secondary);
+  box-shadow: 0 5px 20px var(--shadow-color);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
 }
 
-/* Quitamos el efecto flotante */
-/* Mejora para el efecto de hover en los botones */
-.btn-primary:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 15px rgba(31, 111, 235, 0.3);
+.pcr-app .pcr-interaction input {
+  background: var(--input-bg);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  transition: none; /* DESACTIVADA LA TRANSICIÓN */
 }
 
-/* Efecto hover para los elementos interactivos */
-.upload-btn:hover, .dropdown-toggle:hover, .theme-toggle:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 5px 10px var(--shadow-color);
+.pcr-app .pcr-interaction input:focus {
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 2px rgba(31, 111, 235, 0.15);
 }
 
-/* Mejoramos la transición principal */
-.container, .main-header, .preview-box, .color-control, .button-row, .dropdown-toggle, .theme-toggle, .upload-btn, .btn-primary {
-  transition: background-color 0.3s, color 0.3s, border-color 0.3s, opacity 0.3s;
-}
-
-/* Animación más suave para los elementos de fondo */
-@keyframes driftBackground {
-  0% {
-    background-position: 0 0;
-    opacity: 0.8;
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    background-position: 600px 600px;
-    opacity: 0.8;
-  }
-}
-
-@keyframes sparkleBackground {
-  0% {
-    background-position: 0 0;
-    opacity: 0.7;
-  }
-  50% {
-    opacity: 0.9;
-  }
-  100% {
-    background-position: -600px -600px;
-    opacity: 0.7;
-  }
-}
-
-/* Clase para ocultar elementos visualmente pero mantenerlos accesibles para lectores de pantalla */
-.visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  padding: 0;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  border: 0;
-  white-space: nowrap;
-}
-
-/* Mejoras de rendimiento para animaciones y transiciones */
-
-/* 1. Limitar animaciones a transform y opacity */
-.container, .logo-title, .preview-box, .color-control, .button-row {
-  animation: fadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-  /* Solo animar transform y opacity */
-  will-change: transform, opacity;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* 2. Desactivar animaciones de fondo y entrada en móviles y con prefers-reduced-motion */
-@media (max-width: 768px), (prefers-reduced-motion: reduce) {
-  body:not(.dark-theme)::before,
-  body:not(.dark-theme)::after,
-  body.dark-theme::before,
-  body.dark-theme::after {
-    animation: none !important;
-    background-image: none !important;
-  }
-  .container, .logo-title, .preview-box, .color-control, .button-row {
-    animation: none !important;
-    will-change: auto;
-  }
-  .toast {
-    animation: none !important;
-    transition: none !important;
-  }
-}
-
-/* 3. Reducir/eliminar transiciones globales innecesarias */
-.container, .main-header, .preview-box, .color-control, .button-row, .dropdown-toggle, .theme-toggle, .upload-btn, .btn-primary {
-  transition: background-color 0.3s, color 0.3s, border-color 0.3s, opacity 0.3s;
-}
-
-/* 4. Optimizar hover: solo transform y opacity */
-.btn-primary:hover, .upload-btn:hover, .dropdown-toggle:hover, .theme-toggle:hover {
-  transform: translateY(-2px);
-  opacity: 0.95;
-  box-shadow: none;
-}
-
-/* 5. Eliminar animaciones de box-shadow y background en hover */
-.btn-primary:hover, .upload-btn:hover, .dropdown-toggle:hover, .theme-toggle:hover {
-  box-shadow: none !important;
+.pcr-app .pcr-type.active {
   background: var(--accent-color);
-}
-
-/* 6. Optimizar .toast animaciones */
-.toast {
-  will-change: transform, opacity;
-  animation: slide-in 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards, slide-out 0.3s 2.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-}
-
-@media (max-width: 768px), (prefers-reduced-motion: reduce) {
-  .toast {
-    animation: none !important;
-    transition: none !important;
-  }
 }
